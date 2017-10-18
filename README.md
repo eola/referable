@@ -1,8 +1,43 @@
 # Referrable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/referrable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Referrable provides you with a generator that happily creates a multi-tenant referral
+system for your app with rewards, in just two steps.
 
-TODO: Delete this and the text above, and describe your gem
+1.
+```bash
+rails g referrable user && rails db:migrate
+```
+
+2.
+```ruby
+ReferrableReward.create! reward: 'A new car',
+                         referrals_required: 10,
+                         acquireable_by: 'user'
+```
+
+aaand... you're done!
+
+```ruby
+user = User.first
+
+user.recruits
+#=> #<ActiveRecord::Associations::CollectionProxy [...]>
+
+user.recruits << User.create(name: 'Dan')
+#=> #<ActiveRecord::Associations::CollectionProxy [...]>
+
+user.referrals.count
+#=> 1
+
+user.distance_to_next_prize
+#=> 9
+
+user.percent_to_next_prize
+#=> 10.0
+
+user.last_acquired_prize.name
+#=> 'nothing'
+```
 
 ## Installation
 
