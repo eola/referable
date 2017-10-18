@@ -1,0 +1,10 @@
+Description:
+    Creates a multi-tenant referral system, with rewards
+
+Example:
+    rails generate referable user
+
+    This will create:
+        - A model and migration for rewards.
+        - A migration for the relevant model.
+        - A Concern that you can customise

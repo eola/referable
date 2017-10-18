@@ -1,15 +1,15 @@
 module Migrations
-  module PrizeMigrator
+  module RewardMigrator
 
-    def create_prize_migration
-      generate 'migration', "create_referrable_rewards"
+    def create_reward_migration
+      generate 'migration', "create_referable_rewards"
       add_reward_migration_details
     end
 
     private
 
     def add_reward_migration_details
-      return unless migration_created?('create_referrable_rewards')
+      return unless migration_created?('create_referable_rewards')
       inject_into_file(last_migration, after: 'do |t|') do
         <<~TEXT
         \n

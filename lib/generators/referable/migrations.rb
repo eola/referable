@@ -3,7 +3,7 @@ module Migrations
   require_relative './migrations/reward_migrator'
 
   include ModelMigrator
-  include PrizeMigrator
+  include RewardMigrator
 
   def migration_created?(migration_name)
     /#{migration_name}/ =~ last_migration

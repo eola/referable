@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "referrable/version"
+require "referable/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = 'referrable'
-  spec.version       = Referrable::VERSION
+  spec.name          = 'referable'
+  spec.version       = Referable::VERSION
   spec.authors       = ['Daniel Steele']
   spec.email         = ['danielsteele@hotmail.co.uk']
 
   spec.summary       = 'Add a multi-tenant referral system to your app'
   spec.description   = 'Add a multi-tenant referral and rewards system to your app'
-  spec.homepage      = 'https://github.com/eola/referrable'
+  spec.homepage      = 'https://github.com/eola/referable'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

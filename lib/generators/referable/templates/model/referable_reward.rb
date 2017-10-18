@@ -1,4 +1,4 @@
-class ReferrableReward < ApplicationRecord
+class ReferableReward < ApplicationRecord
 
   enum acquireable_by: [], _prefix: :acquireable_by
 

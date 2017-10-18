@@ -3,7 +3,7 @@ module Migrations
     def create_model_migration
       generate 'migration',
                "add_referral_fields_to_#{file_name} \
-               last_prize_acquired_id:integer \
+               last_reward_acquired_id:integer \
                referral_slug \
                referrals_count:integer"
       add_model_migration_details
@@ -12,7 +12,7 @@ module Migrations
     private
 
     def add_model_migration_details
-      return unless migration_created?('_add_referral_fields_to_user')
+      return unless migration_created?("_add_referral_fields_to_#{file_name}")
       constrain_count
       write_slug_data
       constrain_slug

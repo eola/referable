@@ -1,16 +1,16 @@
-# Referrable
+# Referable
 
-Referrable provides you with a generator that happily creates a multi-tenant referral
+Referable provides you with a generator that happily creates a multi-tenant referral
 system for your app with rewards, in just two steps.
 
 1.
 ```bash
-rails g referrable user && rails db:migrate
+rails g referable user && rails db:migrate
 ```
 
 2.
 ```ruby
-ReferrableReward.create! reward: 'A new car',
+ReferableReward.create! reward: 'A new car',
                          referrals_required: 10,
                          acquireable_by: 'user'
 ```
@@ -29,13 +29,13 @@ user.recruits << User.create(name: 'Dan')
 user.referrals.count
 #=> 1
 
-user.distance_to_next_prize
+user.distance_to_next_reward
 #=> 9
 
-user.percent_to_next_prize
+user.percent_to_next_reward
 #=> 10.0
 
-user.last_acquired_prize.name
+user.last_acquired_reward.name
 #=> 'nothing'
 ```
 
@@ -44,20 +44,56 @@ user.last_acquired_prize.name
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'referrable'
+gem 'referable'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install referrable
-
 ## Usage
 
-TODO: Write usage instructions here
+The generator modifies an existing Rails model to allow referral functionality. The model
+does not need to have any other dependencies.
+
+To enable referrals for a specific model, run
+```bash
+rails generate referable name_of_model
+```
+
+This will create the necessary migration(s). Next, check the contents of the migrations.
+Notably, the _add_referral_fields_to_XXX_ migration, as this updates each record for your
+model with a referral slug.
+
+Then,
+```bash
+rails db:migrate
+```
+
+This can be added for any number of models in your application.
+
+### Creating rewards
+
+Rewards are set for each model type individually. IE a President will have a different set
+of rewards to a PrimeMinister.
+
+Creating rewards is as simple as:
+```ruby
+ReferableReward.create! reward: 'A new car',
+                         referrals_required: 10,
+                         acquireable_by: 'user'
+```
+
+### Callback when model reaches a reward
+
+Want to notify someone or do something when a user acquires a new reward?
+Just hook in to `Referable#acquired_reward!`
+
+### Adding a recruit in devise
+
+At [eola][https://eola.co.uk], we hook in to the `Devise::RegistrationsController#post`
+action, checking for the referral slug in the params. If it exists, the user is given
+the new recruit.
 
 ## Development
 
@@ -67,7 +103,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/referrable. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/referable. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -75,4 +111,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the Referrable project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/referrable/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Referable project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/referable/blob/master/CODE_OF_CONDUCT.md).

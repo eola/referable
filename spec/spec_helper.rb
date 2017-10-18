@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "referrable"
+require "referable"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
