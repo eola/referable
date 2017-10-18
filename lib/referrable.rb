@@ -1,5 +1,4 @@
-require "referrable/version"
+require 'referrable/version'
 
 module Referrable
-  # Your code goes here...
 end
