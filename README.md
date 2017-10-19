@@ -51,6 +51,11 @@ And then execute:
 
     $ bundle
 
+Or install it yourself:
+```bash
+gem install referable
+```
+
 ## Usage
 
 The generator modifies an existing Rails model to allow referral functionality. The model
@@ -80,8 +85,8 @@ of rewards to a PrimeMinister.
 Creating rewards is as simple as:
 ```ruby
 ReferableReward.create! reward: 'A new car',
-                         referrals_required: 10,
-                         acquireable_by: 'user'
+                        referrals_required: 10,
+                        acquireable_by: 'user'
 ```
 
 ### Callback when model reaches a reward
@@ -91,7 +96,7 @@ Just hook in to `Referable#acquired_reward!`
 
 ### Adding a recruit in devise
 
-At [eola][https://eola.co.uk], we hook in to the `Devise::RegistrationsController#post`
+At [eola](https://eola.co.uk), we hook in to the `Devise::RegistrationsController#post`
 action, checking for the referral slug in the params. If it exists, the user is given
 the new recruit.
 
