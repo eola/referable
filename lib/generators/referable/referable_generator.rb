@@ -8,7 +8,7 @@ class ReferableGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('../templates', __FILE__)
 
   def copy_referral
-    copy_file "model/referal.rb", "app/models/referral.rb"
+    copy_file "model/referral.rb", "app/models/referral.rb"
   end
 
   def copy_referable_concern

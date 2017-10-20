@@ -11,8 +11,8 @@ rails g referable user && rails db:migrate
 2.
 ```ruby
 ReferableReward.create! reward: 'A new car',
-                         referrals_required: 10,
-                         acquireable_by: 'user'
+                        referrals_required: 10,
+                        acquireable_by: 'user'
 ```
 
 aaand... you're done!
